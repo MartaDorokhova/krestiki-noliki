@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FieldComponent } from './Field';
-import { InformationComponent } from './Information';
+import { FieldComponent } from './components/field/Field';
+import { InformationComponent } from './components/information/Information';
 import './App.css';
 import styles from './App.module.css';
 

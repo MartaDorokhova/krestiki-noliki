@@ -1,5 +1,5 @@
 import { InformationLayout } from './InformationLayout';
-import { WIN_PATTERNS } from './WIN_PATTERN';
+import { WIN_PATTERNS } from '../../WIN_PATTERN';
 import PropTypes from 'prop-types';
 
 export const InformationComponent = ({

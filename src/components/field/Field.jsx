@@ -1,4 +1,3 @@
-import './App.css';
 import { FieldLayout } from './FieldLayout';
 import PropTypes from 'prop-types';
 
