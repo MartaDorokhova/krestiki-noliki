@@ -1,35 +1,29 @@
-import { useState } from 'react';
 import { FieldComponent } from './components/field/Field';
 import { InformationComponent } from './components/information/Information';
 import './App.css';
 import styles from './App.module.css';
+import { store } from './store.js';
+import { useEffect } from 'react';
 
 export const App = () => {
-	const [currentPlayer, setCurrentPlayer] = useState('X');
-	const [isGameEnded, setIsGameEnded] = useState(false);
-	const [isDraw, setIsDraw] = useState(false);
-	const [field, setField] = useState(['', '', '', '', '', '', '', '', '']);
-
+	const { currentPlayer, field, isDraw, isGameEnded } = store.getState();
+	useEffect(() => {
+		console.log(store.getState());
+	}, [store.dispatch]);
 	return (
 		<div className={styles.App}>
 			<div>
 				<InformationComponent
 					isDraw={isDraw}
 					isGameEnded={isGameEnded}
-					currentPlayer={currentPlayer}
 					field={field}
-					setIsGameEnded={setIsGameEnded}
-					setIsDraw={setIsDraw}
-					setCurrentPlayer={setCurrentPlayer}
-					setField={setField}
+					currentPlayer={currentPlayer}
 				/>
 			</div>
 			<div>
 				<FieldComponent
 					field={field}
-					setField={setField}
 					currentPlayer={currentPlayer}
-					setCurrentPlayer={setCurrentPlayer}
 					isGameEnded={isGameEnded}
 				/>
 			</div>

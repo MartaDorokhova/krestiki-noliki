@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export const FieldLayout = ({ field, onClick }) => (
 	<div className={styles.field}>
-		{field.map((item, index) => (
+		{field?.map((item, index) => (
 			<button
 				className={styles.button}
 				key={index}

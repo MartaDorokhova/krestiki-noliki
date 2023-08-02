@@ -8,10 +8,18 @@ const createStore = (reducer) => {
 			state = reducer(state, action);
 			console.log(state);
 		},
-		getState: () => state,
+		getState: () => {
+			console.log(state);
+			return state;
+		},
 	};
 };
 
 export const store = createStore(appReducer);
+
+// store.subscribe(() => {
+// 	//6. Срабатывает и получает state, каждый раз при изменении, помещать до dispatch()
+// 	console.log(store.getState()); //7. Получаем состояние
+// });
 
 store.dispatch({});

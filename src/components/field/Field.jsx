@@ -1,36 +1,31 @@
 import { FieldLayout } from './FieldLayout';
 import PropTypes from 'prop-types';
+import { store } from '../../store';
 
-export const FieldComponent = ({
-	field,
-	setField,
-	currentPlayer,
-	setCurrentPlayer,
-	isGameEnded,
-}) => {
+export const FieldComponent = () => {
+	const { field, isGameEnded } = store.getState();
 	const onClick = (e, index) => {
 		const value = e.target.value;
 		if (!value && !isGameEnded) {
-			setField([
-				...field.slice(0, index),
-				currentPlayer,
-				...field.slice(index + 1),
-			]);
-		}
+			// const newField = [
+			// 	...field.slice(0, index),
+			// 	currentPlayer,
+			// 	...field.slice(index + 1),
+			// ];
 
-		if (currentPlayer === 'X') {
-			setCurrentPlayer('0');
-		} else {
-			setCurrentPlayer('X');
+			store.dispatch({
+				type: 'ON_CLICK',
+				payload: { index },
+				// payload: { currentPlayer, field: newField, isDraw, isGameEnded },
+			});
 		}
 	};
-
+	console.log(field);
 	return <FieldLayout field={field} onClick={onClick} />;
 };
+
 FieldComponent.propTypes = {
 	field: PropTypes.array,
-	setField: PropTypes.func,
 	currentPlayer: PropTypes.string,
-	setCurrentPlayer: PropTypes.func,
 	isGameEnded: PropTypes.bool,
 };

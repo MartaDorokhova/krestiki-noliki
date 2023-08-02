@@ -1,17 +1,15 @@
 import { InformationLayout } from './InformationLayout';
 import { WIN_PATTERNS } from '../../WIN_PATTERN';
 import PropTypes from 'prop-types';
+import { store } from '../../store';
 
 export const InformationComponent = ({
 	field,
 	isDraw,
 	isGameEnded,
 	currentPlayer,
-	setIsGameEnded,
-	setIsDraw,
-	setCurrentPlayer,
-	setField,
 }) => {
+	console.log(field);
 	const isWinner = WIN_PATTERNS.some((pattern) => {
 		const [index1, index2, index3] = pattern;
 		const value1 = field[index1];
@@ -22,24 +20,27 @@ export const InformationComponent = ({
 			value2 === value3 &&
 			(value1 === 'X' || value1 === '0')
 		) {
-			setCurrentPlayer(value1);
+			// setCurrentPlayer(value1);
+
 			return true;
 		}
 		return false;
 	});
 	if (isWinner) {
-		setIsGameEnded(true);
+		store.dispatch({
+			type: 'ON_CLICK',
+			payload: { currentPlayer, field, isDraw, isGameEnded: true },
+		});
 	}
 
 	if (!isWinner && !field.includes('')) {
-		setIsGameEnded(true);
-		setIsDraw(true);
+		store.dispatch({
+			type: 'ON_CLICK',
+			payload: { currentPlayer, field, isDraw: true, isGameEnded: true },
+		});
 	}
 	const onClickRestart = () => {
-		setIsGameEnded(false);
-		setIsDraw(false);
-		setCurrentPlayer('X');
-		setField(['', '', '', '', '', '', '', '', '']);
+		store.dispatch({ type: 'RESTART' });
 	};
 	return (
 		<InformationLayout
@@ -53,9 +54,7 @@ export const InformationComponent = ({
 
 InformationComponent.propTypes = {
 	field: PropTypes.array,
-	setField: PropTypes.func,
 	currentPlayer: PropTypes.string,
-	setCurrentPlayer: PropTypes.func,
 	isGameEnded: PropTypes.bool,
 	isDraw: PropTypes.bool,
 	setIsGameEnded: PropTypes.func,
