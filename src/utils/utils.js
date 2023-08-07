@@ -2,8 +2,7 @@ import { WIN_PATTERNS } from '../WIN_PATTERN';
 import { store } from '../store';
 import PropTypes from 'prop-types';
 
-export const informationUtils = () => {
-	const { field, isGameEnded, isDraw, currentPlayer } = store.getState();
+export const informationUtils = (field, isGameEnded, isDraw, currentPlayer) => {
 	const isWinner = WIN_PATTERNS.some((pattern) => {
 		const [index1, index2, index3] = pattern;
 		const value1 = field[index1];

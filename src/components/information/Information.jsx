@@ -3,7 +3,8 @@ import { store } from '../../store';
 import { informationUtils } from '../../utils/utils';
 
 export const InformationComponent = () => {
-	informationUtils();
+	const { field, isGameEnded, isDraw, currentPlayer } = store.getState();
+	informationUtils(field, isGameEnded, isDraw, currentPlayer);
 	const onClickRestart = () => {
 		store.dispatch({ type: 'RESTART' });
 	};
