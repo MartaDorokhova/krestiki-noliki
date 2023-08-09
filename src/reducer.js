@@ -6,16 +6,14 @@ export const initialState = {
 	text: 'Ходит X',
 };
 
-export const appReducer = (state = initialState, action) => {
-	const { type, payload } = action;
-
-	switch (type) {
+export const reducer = (state = initialState, action) => {
+	switch (action.type) {
 		case 'RESTART': {
 			return initialState;
 		}
 
 		case 'ON_CLICK': {
-			const { index } = payload;
+			const { index } = action.payload;
 			let newCurrentPlayer;
 			let newText;
 			if (state.currentPlayer === 'X') {
@@ -31,7 +29,6 @@ export const appReducer = (state = initialState, action) => {
 				newCurrentPlayer,
 				...state.field.slice(index + 1),
 			];
-
 			return {
 				...state,
 				field: newField,
@@ -41,15 +38,14 @@ export const appReducer = (state = initialState, action) => {
 		}
 
 		case 'SET_IS_GAME_ENDED': {
-			const { isGameEnded, text } = payload;
+			const { isGameEnded } = action.payload;
 
-			return { ...state, isGameEnded, text };
+			return { ...state, isGameEnded, text: `Победа ${state.currentPlayer}` };
 		}
 
 		case 'SET_IS_DRAW': {
-			const { isGameEnded, isDraw, text } = payload;
-
-			return { ...state, isGameEnded, isDraw, text };
+			const { isDraw, isGameEnded } = action.payload;
+			return { ...state, text: `Ничья`, isDraw, isGameEnded };
 		}
 
 		default:

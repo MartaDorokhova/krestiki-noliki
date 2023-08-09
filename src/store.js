@@ -1,6 +1,6 @@
 import { legacy_createStore as createStore } from 'redux';
-import { appReducer, initialState } from './reducer';
+import { reducer } from './reducer';
 
-export const store = createStore(appReducer, initialState);
+export const store = createStore(reducer);
 
 export default store;

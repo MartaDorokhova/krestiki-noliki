@@ -1,9 +1,10 @@
 import styles from './Information.module.css';
 import PropTypes from 'prop-types';
-import { store } from '../../store';
+import { useSelector } from 'react-redux';
+import { selectText } from '../../selectors/select-text';
 
 export const InformationLayout = ({ onClickRestart }) => {
-	const { text } = store.getState();
+	const text = useSelector(selectText);
 
 	return (
 		<>

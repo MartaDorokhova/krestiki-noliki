@@ -1,12 +1,11 @@
 import { InformationLayout } from './InformationLayout';
-import { store } from '../../store';
-import { informationUtils } from '../../utils/utils';
+import { useDispatch } from 'react-redux';
 
 export const InformationComponent = () => {
-	const { field, isGameEnded, isDraw, currentPlayer } = store.getState();
-	informationUtils(field, isGameEnded, isDraw, currentPlayer);
+	const dispatch = useDispatch();
+
 	const onClickRestart = () => {
-		store.dispatch({ type: 'RESTART' });
+		dispatch({ type: 'RESTART' });
 	};
 	return <InformationLayout onClickRestart={onClickRestart} />;
 };
