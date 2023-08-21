@@ -1,19 +1,15 @@
 import { FieldLayout } from './FieldLayout';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { isWinner } from '../../utils';
 import PropTypes from 'prop-types';
-import {
-	selectField,
-	selectIsGameEnded,
-	selectIsDraw,
-} from '../../selectors/select-informations';
 import { useEffect } from 'react';
 
-export const FieldComponentContainer = ({ dispatch }) => {
-	const field = useSelector(selectField);
-	const isGameEnded = useSelector(selectIsGameEnded);
-	const isDraw = useSelector(selectIsDraw);
-
+export const FieldComponentContainer = ({
+	dispatch,
+	field,
+	isDraw,
+	isGameEnded,
+}) => {
 	const onClick = (e, index) => {
 		const value = e.target.value;
 		if (!value && !isGameEnded) {
@@ -45,7 +41,12 @@ export const FieldComponentContainer = ({ dispatch }) => {
 	return <FieldLayout field={newField} onClick={onClick} />;
 };
 
-export const FieldComponent = connect()(FieldComponentContainer);
+const mapStateToProps = (state) => ({
+	isDraw: state.isDraw,
+	isGameEnded: state.isGameEnded,
+	field: state.field,
+});
+export const FieldComponent = connect(mapStateToProps)(FieldComponentContainer);
 
 FieldComponentContainer.propTypes = {
 	field: PropTypes.array,
