@@ -1,11 +1,8 @@
 import styles from './Information.module.css';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { selectText } from '../../selectors/select-text';
+import { connect } from 'react-redux';
 
-export const InformationLayout = ({ onClickRestart }) => {
-	const text = useSelector(selectText);
-
+export const InformationLayoutContainer = ({ onClickRestart, text }) => {
 	return (
 		<>
 			<div className={styles.start}>{text}</div>
@@ -16,6 +13,14 @@ export const InformationLayout = ({ onClickRestart }) => {
 	);
 };
 
-InformationLayout.propTypes = {
+const mapStateToProps = (state) => ({
+	text: state.text,
+});
+
+export const InformationLayout = connect(mapStateToProps)(
+	InformationLayoutContainer,
+);
+
+InformationLayoutContainer.propTypes = {
 	onClickRestart: PropTypes.func,
 };

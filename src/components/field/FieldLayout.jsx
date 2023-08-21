@@ -1,7 +1,8 @@
+import { connect } from 'react-redux';
 import styles from './Field.module.css';
 import PropTypes from 'prop-types';
 
-export const FieldLayout = ({ field, onClick }) => (
+export const FieldLayoutContainer = ({ field, onClick }) => (
 	<div className={styles.field}>
 		{field?.map((item, index) => (
 			<button
@@ -16,7 +17,13 @@ export const FieldLayout = ({ field, onClick }) => (
 	</div>
 );
 
-FieldLayout.propTypes = {
+const mapStateToProps = (state) => ({
+	field: state.field,
+});
+
+export const FieldLayout = connect(mapStateToProps)(FieldLayoutContainer);
+
+FieldLayoutContainer.propTypes = {
 	field: PropTypes.array,
 	onClick: PropTypes.func,
 };

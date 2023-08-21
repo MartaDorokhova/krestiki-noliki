@@ -1,11 +1,11 @@
 import { InformationLayout } from './InformationLayout';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
-export const InformationComponent = () => {
-	const dispatch = useDispatch();
-
+export const InformationComponentContainer = ({ dispatch }) => {
 	const onClickRestart = () => {
 		dispatch({ type: 'RESTART' });
 	};
 	return <InformationLayout onClickRestart={onClickRestart} />;
 };
+
+export const InformationComponent = connect()(InformationComponentContainer);
