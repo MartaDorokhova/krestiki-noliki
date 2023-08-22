@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './Information.module.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -15,12 +14,14 @@ class InformationLayoutContainer extends React.Component {
 		const { text } = this.props;
 
 		return (
-			<>
-				<div className={styles.start}>{text}</div>{' '}
-				<button className={styles.restart} onClick={this.onClickRestart}>
-					Начать заново
-				</button>
-			</>
+			<div>
+				<div className=" w-40 ml-16 mt-4 font-mono text-xl  text-center">
+					{text}
+				</div>
+				<div className="ml-16 w-40  rounded-full font-mono text-lg bg-amber-100 border-[#fecd8d] border  cursor-pointer text-center">
+					<buttons onClick={this.onClickRestart}>Начать заново</buttons>
+				</div>
+			</div>
 		);
 	}
 }

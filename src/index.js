@@ -10,12 +10,9 @@ const rendering = () => {
 	root.render(
 		<React.StrictMode>
 			<Provider store={store}>
-				<App />{' '}
+				<App />
 			</Provider>
 		</React.StrictMode>,
 	);
 };
 rendering();
-// store.subscribe(() => {
-// 	rendering();
-// });
