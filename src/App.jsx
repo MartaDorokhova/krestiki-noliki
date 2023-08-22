@@ -1,5 +1,5 @@
 import { FieldComponent } from './components/field/Field';
-import { InformationComponent } from './components/information/Information';
+import { InformationLayout } from './components/information/InformationLayout';
 import './App.css';
 import styles from './App.module.css';
 
@@ -7,7 +7,7 @@ export const App = () => {
 	return (
 		<div className={styles.App}>
 			<div>
-				<InformationComponent />
+				<InformationLayout />
 			</div>
 			<div>
 				<FieldComponent />
