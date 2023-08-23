@@ -1,18 +1,11 @@
 import { FieldLayout } from './FieldLayout';
 import PropTypes from 'prop-types';
 import { store } from '../../store';
+import { onClick } from './field-click';
 
 export const FieldComponent = () => {
-	const { field, isGameEnded } = store.getState();
-	const onClick = (e, index) => {
-		const value = e.target.value;
-		if (!value && !isGameEnded) {
-			store.dispatch({
-				type: 'ON_CLICK',
-				payload: { index },
-			});
-		}
-	};
+	const { field } = store.getState();
+
 	let newField = field;
 
 	return <FieldLayout field={newField} onClick={onClick} />;
@@ -20,5 +13,4 @@ export const FieldComponent = () => {
 
 FieldComponent.propTypes = {
 	field: PropTypes.array,
-	isGameEnded: PropTypes.bool,
 };

@@ -1,5 +1,5 @@
-import { WIN_PATTERNS } from '../WIN_PATTERN';
-import { store } from '../store';
+import { WIN_PATTERNS } from '../../WIN_PATTERN';
+import { store } from '../../store';
 import PropTypes from 'prop-types';
 
 export const informationUtils = (field, isGameEnded, isDraw, currentPlayer) => {
